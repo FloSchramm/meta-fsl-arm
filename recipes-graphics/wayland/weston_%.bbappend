@@ -10,6 +10,7 @@ SRC_URI_append_mx6 = " file://0001-ENGR00314805-1-Add-Vivante-EGL-support.patch 
 PACKAGECONFIG_mx6 = "fbdev"
 PACKAGECONFIG_append_mx6q = " egl cairo-glesv2"
 PACKAGECONFIG_append_mx6dl = " egl cairo-glesv2"
+PACKAGECONFIG_append_mx6sx = " egl cairo-glesv2"
 
 EXTRA_OECONF_append_mx6 = " \
     --disable-libunwind \
@@ -28,6 +29,10 @@ EXTRA_OEMAKE_append_mx6q = " \
     FB_COMPOSITOR_LIBS="-lGLESv2 -lEGL -lwayland-server -lxkbcommon" \
 "
 EXTRA_OEMAKE_append_mx6dl = " \
+    COMPOSITOR_LIBS="-lGLESv2 -lEGL -lGAL -lwayland-server -lxkbcommon -lpixman-1" \
+    FB_COMPOSITOR_LIBS="-lGLESv2 -lEGL -lwayland-server -lxkbcommon" \
+"
+EXTRA_OEMAKE_append_mx6sx = " \
     COMPOSITOR_LIBS="-lGLESv2 -lEGL -lGAL -lwayland-server -lxkbcommon -lpixman-1" \
     FB_COMPOSITOR_LIBS="-lGLESv2 -lEGL -lwayland-server -lxkbcommon" \
 "
