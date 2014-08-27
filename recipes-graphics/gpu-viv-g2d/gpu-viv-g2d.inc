@@ -3,7 +3,7 @@
 DESCRIPTION = "GPU Vivante G2D library and sample applications for imx6"
 SECTION = "libs"
 LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://usr/include/g2d.h;endline=7;md5=861ebad4adc7236f8d1905338abd7eb2"
+LIC_FILES_CHKSUM = "file://usr/include/g2d.h;endline=7;md5=53b61e015f8e1c386057c5ba8b081d53"
 
 PROVIDES += "virtual/libg2d"
 
@@ -13,7 +13,9 @@ inherit fsl-eula-unpack
 
 PE = "1"
 
-SRC_URI = "${FSL_MIRROR}/${PN}-${PV}.bin;fsl-eula=true"
+# FIXME: Drop 'beta' suffix for GA release
+SRC_URI = "${FSL_MIRROR}/${PN}-${@'${PV}'.replace('1.1.0', '1.1.0-beta')}.bin;fsl-eula=true"
+S = "${WORKDIR}/${PN}-${@'${PV}'.replace('1.1.0', '1.1.0-beta')}"
 
 PACKAGES += "libg2d"
 
