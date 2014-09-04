@@ -1,0 +1,93 @@
+From 42e39ad63e8108d7944caf3bc6268070ac40e202 Mon Sep 17 00:00:00 2001
+From: "Ye.Li" <Ye.Li@freescale.com>
+Date: Mon, 1 Sep 2014 10:33:47 +0800
+Subject: [PATCH] iMX6: Change mmcroot to use fixed mmc block index for USDHC
+
+Kernel changed to use fixed mmcblk index for USDHC, which is
+mmcblk0 --> USDHC1
+mmcblk1 --> USDHC2
+mmcblk2 --> USDHC3
+mmcblk3 --> USDHC4
+Thus, change the default mmcroot in u-boot to fit the changes in kernel.
+
+Upstream-Status: Pending
+
+Signed-off-by: Ye.Li <Ye.Li@freescale.com>
+---
+ include/configs/mx6qarm2.h      |    4 ++--
+ include/configs/mx6qsabreauto.h |    2 +-
+ include/configs/mx6sabresd.h    |    2 +-
+ include/configs/mx6slevk.h      |    2 +-
+ include/configs/mx6sxsabresd.h  |    2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/include/configs/mx6qarm2.h b/include/configs/mx6qarm2.h
+index fd651cf..8bc2124 100644
+--- a/include/configs/mx6qarm2.h
++++ b/include/configs/mx6qarm2.h
+@@ -77,8 +77,8 @@
+ 	"fdt_high=0xffffffff\0" \
+ 	"initrd_high=0xffffffff\0" \
+ 	"mmcdev=1\0" \
+-	"mmcpart=2\0" \
+-	"mmcroot=/dev/mmcblk0p3 rootwait rw\0" \
++	"mmcpart=1\0" \
++	"mmcroot=/dev/mmcblk3p2 rootwait rw\0" \
+ 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
+ 		"root=${mmcroot}\0" \
+ 	"loadbootscript=" \
+diff --git a/include/configs/mx6qsabreauto.h b/include/configs/mx6qsabreauto.h
+index d1639c4..bdfbbc7 100644
+--- a/include/configs/mx6qsabreauto.h
++++ b/include/configs/mx6qsabreauto.h
+@@ -17,7 +17,7 @@
+ #elif defined CONFIG_MX6DL
+ #define CONFIG_DEFAULT_FDT_FILE	"imx6dl-sabreauto.dtb"
+ #endif
+-#define CONFIG_MMCROOT			"/dev/mmcblk0p2"
++#define CONFIG_MMCROOT			"/dev/mmcblk2p2"
+ #define PHYS_SDRAM_SIZE		(2u * 1024 * 1024 * 1024)
+ 
+ /* USB Configs */
+diff --git a/include/configs/mx6sabresd.h b/include/configs/mx6sabresd.h
+index c5b9c4b..c563533 100644
+--- a/include/configs/mx6sabresd.h
++++ b/include/configs/mx6sabresd.h
+@@ -15,7 +15,7 @@
+ #define CONFIG_MACH_TYPE	3980
+ #define CONFIG_MXC_UART_BASE	UART1_BASE
+ #define CONFIG_CONSOLE_DEV		"ttymxc0"
+-#define CONFIG_MMCROOT			"/dev/mmcblk0p2"
++#define CONFIG_MMCROOT			"/dev/mmcblk2p2"
+ #if defined(CONFIG_MX6Q)
+ #define CONFIG_DEFAULT_FDT_FILE	"imx6q-sabresd-ldo.dtb"
+ #elif defined(CONFIG_MX6DL)
+diff --git a/include/configs/mx6slevk.h b/include/configs/mx6slevk.h
+index 8e3cc02..66d6d04 100644
+--- a/include/configs/mx6slevk.h
++++ b/include/configs/mx6slevk.h
+@@ -87,7 +87,7 @@
+ 	"ip_dyn=yes\0" \
+ 	"mmcdev=0\0" \
+ 	"mmcpart=1\0" \
+-	"mmcroot=/dev/mmcblk0p2 rootwait rw\0" \
++	"mmcroot=/dev/mmcblk1p2 rootwait rw\0" \
+ 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
+ 		"root=${mmcroot}\0" \
+ 	"loadbootscript=" \
+diff --git a/include/configs/mx6sxsabresd.h b/include/configs/mx6sxsabresd.h
+index 1eda65e..f0fd01a 100644
+--- a/include/configs/mx6sxsabresd.h
++++ b/include/configs/mx6sxsabresd.h
+@@ -61,7 +61,7 @@
+ 	"ip_dyn=yes\0" \
+ 	"mmcdev=0\0" \
+ 	"mmcpart=1\0" \
+-	"mmcroot=/dev/mmcblk0p2 rootwait rw\0" \
++	"mmcroot=/dev/mmcblk3p2 rootwait rw\0" \
+ 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
+ 		"root=${mmcroot}\0" \
+ 	"loadbootscript=" \
+-- 
+1.7.9.5
+
