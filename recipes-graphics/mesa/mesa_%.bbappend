@@ -8,6 +8,7 @@ PACKAGECONFIG_remove_mx6 = "egl gles"
 PROVIDES_remove_mx6 = "virtual/libgles1 virtual/libgles2 virtual/egl"
 PROVIDES_remove_mx6q = "virtual/libgl"
 PROVIDES_remove_mx6dl = "virtual/libgl"
+PROVIDES_remove_mx6sx = "virtual/libgl"
 
 USE_VIV_LIBGL = "yes"
 USE_VIV_LIBGL_mx6sl = "no"
@@ -18,3 +19,4 @@ do_install_append_mx6 () {
         rm -f ${D}${libdir}/libGL.*
     fi
 }
+EXTRA_OECONF_mx6 := "${@'${EXTRA_OECONF}'.replace('--enable-glx-tls','--enable-glx')}"

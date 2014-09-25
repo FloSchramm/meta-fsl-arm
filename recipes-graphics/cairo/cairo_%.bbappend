@@ -11,3 +11,4 @@ PACKAGECONFIG_mx6 = " \
 
 PACKAGECONFIG_append_mx6q = " egl glesv2"
 PACKAGECONFIG_append_mx6dl = " egl glesv2"
+PACKAGECONFIG_append_mx6sx = " egl glesv2"

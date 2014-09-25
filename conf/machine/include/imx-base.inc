@@ -18,6 +18,7 @@ UBOOT_ENTRYPOINT_mx51  = "0x90008000"
 UBOOT_ENTRYPOINT_mx53  = "0x70008000"
 UBOOT_ENTRYPOINT_mx6  = "0x10008000"
 UBOOT_ENTRYPOINT_mx6sl = "0x80008000"
+UBOOT_ENTRYPOINT_mx6sx = "0x80008000"
 UBOOT_ENTRYPOINT_vf60 = "0x80008000"
 
 XSERVER_DRIVER = "xf86-video-fbdev"
@@ -26,11 +27,6 @@ XSERVER_DRIVER_mx6 = "xf86-video-imxfb-vivante"
 XSERVER = "xserver-xorg \
            xf86-input-evdev \
            ${XSERVER_DRIVER}"
-
-# FIXME: Use older versions until Vivante GPU is made compatible
-PREFERRED_VERSION_xserver-xorg_mx6 = "2:1.14.4"
-PREFERRED_VERSION_directfb_mx6 = "1.6.3"
-PREFERRED_VERSION_directfb-examples_mx6 = "1.6.0"
 
 # Ship kernel modules
 MACHINE_EXTRA_RRECOMMENDS = "kernel-modules"
@@ -52,6 +48,7 @@ MACHINE_SOCARCH_FILTER = "libfslcodec libfslvpuwrap libfslparser gst-fsl-plugins
 MACHINE_SOCARCH_FILTER_append_mx5 = " virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa virtual/libgl"
 MACHINE_SOCARCH_FILTER_append_mx6q = " virtual/libopenvg virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa virtual/libgl"
 MACHINE_SOCARCH_FILTER_append_mx6dl = " virtual/libopenvg virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa virtual/libgl"
+MACHINE_SOCARCH_FILTER_append_mx6sx = " virtual/libopenvg virtual/libgles1 virtual/libgles2 virtual/egl virtual/mesa virtual/libgl"
 
 INHERIT += "fsl-dynamic-packagearch"
 
@@ -96,12 +93,15 @@ PREFERRED_PROVIDER_virtual/libgles2_mx5 ?= "amd-gpu-${GPU_FLAVOUR}bin-mx51"
 PREFERRED_PROVIDER_virtual/egl_mx6 ?= "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgles1_mx6q = "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgles1_mx6dl = "gpu-viv-bin-mx6q"
+PREFERRED_PROVIDER_virtual/libgles1_mx6sx = "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgles1_mx6sl = "mesa"
 PREFERRED_PROVIDER_virtual/libgles2_mx6q = "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgles2_mx6dl = "gpu-viv-bin-mx6q"
+PREFERRED_PROVIDER_virtual/libgles2_mx6sx = "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgles2_mx6sl = "mesa"
 PREFERRED_PROVIDER_virtual/libgl_mx6q = "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgl_mx6dl = "gpu-viv-bin-mx6q"
+PREFERRED_PROVIDER_virtual/libgl_mx6sx = "gpu-viv-bin-mx6q"
 PREFERRED_PROVIDER_virtual/libgl_mx6sl = "mesa"
 
 PREFERRED_PROVIDER_virtual/kernel_mx3 ?= "linux-fslc"
